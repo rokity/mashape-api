@@ -13,4 +13,5 @@
 
 <li>Search API for Tags ``` http://speech2text.site90.com/?query=find&type=tags&parameter=$YourTag$ ```</li>
 
+<li>Search API for Name ``` http://speech2text.site90.com/?query=find&type=search&parameter=$Name$ ```</li>
 </ul> 
