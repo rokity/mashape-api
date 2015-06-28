@@ -1,4 +1,4 @@
 # mashape-api
 
 Demo:
-http://speech2text.site90.com/?query=explore
+<a href="http://speech2text.site90.com/?query=explore" >Demo</a>
