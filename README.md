@@ -4,7 +4,13 @@
 <a href="http://speech2text.site90.com/?query=explore" >Demo</a>
 
 <h3>List of route:</h3>
+ <ul>
+  
+  
+  <li>Milk</li>
 
-<a href="http://speech2text.site90.com/?query=explore">Explore Page</a>
+<li><a href="http://speech2text.site90.com/?query=explore">Explore Page</a></li>
 
-Search API for Tags ``` http://speech2text.site90.com/?query=find&type=tags&parameter=$YourTag$ ```
+<li>Search API for Tags ``` http://speech2text.site90.com/?query=find&type=tags&parameter=$YourTag$ ```</li>
+
+</ul> 
