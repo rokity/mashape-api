@@ -68,7 +68,7 @@ header('Content-Type: application/json');
 
  $date= date("Y/m/d");
  $diff=get_count_days($date);
- if($diff>3){
+ if($diff>6){
  $array=parse('https://www.mashape.com/explore');
  load_json_to_db($array);
  echo json_encode($array);
