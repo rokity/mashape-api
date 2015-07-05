@@ -87,13 +87,13 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
   if ($result=$conn->query($sql) ) {
     while ($row = $result->fetch_row()) {
-          array_push($name,$row[1]);
-          array_push($owner,$row[2]);
-          array_push(  $image_owner,$row[3]);
-          array_push(  $image_api,$row[4]);
-          array_push($desc,$row[5]);
-          array_push($prices,$row[6]);
-          array_push($links,$row[7] );
+          array_push($name,urldecode($row[1]));
+          array_push($owner,urldecode($row[2]));
+          array_push(  $image_owner,urldecode($row[3]));
+          array_push(  $image_api,urldecode($row[4]));
+          array_push($desc,urldecode($row[5]));
+          array_push($prices,urldecode($row[6]));
+          array_push($links,urldecode($row[7]) );
 
       }
 
