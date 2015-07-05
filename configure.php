@@ -36,50 +36,88 @@ $conn->close();
 }
 
 function get_count_days($data){
-  /*
-  *
 
-SELECT data
-FROM table_name
-ORDER BY id DESC
-LIMIT 1
-
-
-  *
-  */
-$db_data=null;
-  $servername = "mysql4.000webhost.com";
-  $username = "a2124875_root";
-  $password = "frocio12";
-  $dbname = "a2124875_cache";
-  $conn = new mysqli($servername, $username, $password, $dbname);
-  // Check connection
-  if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-  }
-
-  $sql =" SELECT DATA FROM cache ORDER BY id DESC LIMIT 1 ";
-
-  if ($result=$conn->query($sql) ) {
-    while ($row = $result->fetch_row()) {
-          $db_data= $row[0];
-      }
-
-    /* free result set */
-    $result->close();
-  } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
-  }
+$db_data=get_last_data();
 $count_data=strtotime($data) ;
 $count_db_data=strtotime($db_data);
 $differences=$count_data-$count_db_data;
 
 
-$conn->close();
+
 return $differences;
 }
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function read_from_cache($data){
+
+$db_data=get_last_data();
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function get_last_data(){
+
+  $db_data=null;
+    $servername = "mysql4.000webhost.com";
+    $username = "a2124875_root";
+    $password = "frocio12";
+    $dbname = "a2124875_cache";
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql =" SELECT DATA FROM cache ORDER BY id DESC LIMIT 1 ";
+
+    if ($result=$conn->query($sql) ) {
+      while ($row = $result->fetch_row()) {
+            $db_data= $row[0];
+        }
+
+      /* free result set */
+      $result->close();
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+$conn->close();
+
+    return $db_data;
+
+
+}
 
 ?>

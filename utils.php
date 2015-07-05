@@ -55,7 +55,7 @@ function parse($url){
 
   $array=array("name"=>$name,"owner"=>$owner,"image_owner"=>$image_owner,"image_api"=>$image_api,"desc"=>$desc,"prices"=>$prices,"links"=>$links);
 
-  load_json_to_db($array);
+  return $array;
 }
 
 
@@ -69,7 +69,9 @@ header('Content-Type: application/json');
  $date= date("Y/m/d");
  $diff=get_count_days($date);
  if($diff>3){
- parse('https://www.mashape.com/explore');
+ $array=parse('https://www.mashape.com/explore');
+ load_json_to_db($array);
+ echo json_encode($array);
  }
  else {
    echo "else";
@@ -90,9 +92,9 @@ function find(){
     if((isset($_GET['type']))&&($_GET['type']!=null)&&((isset($_GET['parameter']))&&($_GET['parameter']!=null)) ) {
     //echo "find aperto";
 
-  parse('https://www.mashape.com/explore'.switch_type($_GET['type']).$_GET['parameter']);
+  $array=parse('https://www.mashape.com/explore'.switch_type($_GET['type']).$_GET['parameter']);
 
-
+echo json_encode($array);
 
 
 
