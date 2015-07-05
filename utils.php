@@ -74,7 +74,8 @@ header('Content-Type: application/json');
  echo json_encode($array);
  }
  else {
-   echo "else";
+   $array=read_from_cache();
+   echo json_encode($array);
  }
   //  print_r($array);
 

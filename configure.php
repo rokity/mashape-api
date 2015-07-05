@@ -65,13 +65,51 @@ return $differences;
 
 
 
-function read_from_cache($data){
+function read_from_cache(){
 
 $db_data=get_last_data();
 
+$servername = "mysql4.000webhost.com";
+$username = "a2124875_root";
+$password = "frocio12";
+$dbname = "a2124875_cache";
+$conn = new mysqli($servername, $username, $password, $dbname);
+  $sql =" SELECT * FROM cache  WHERE data like '".$db_data."'";
 
+
+    $name =array();
+    $owner =array();
+    $image_owner =array();
+    $image_api =array();
+    $desc =array();
+    $prices =array();
+    $links =array();
+
+  if ($result=$conn->query($sql) ) {
+    while ($row = $result->fetch_row()) {
+          array_push($name,$row[1]);
+          array_push($owner,$row[2]);
+          array_push(  $image_owner,$row[3]);
+          array_push(  $image_api,$row[4]);
+          array_push($desc,$row[5]);
+          array_push($prices,$row[6]);
+          array_push($links,$row[7] );
+
+      }
+
+    /* free result set */
+    $result->close();
+  } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+$conn->close();
+
+$array=array("name"=>$name,"owner"=>$owner,"image_owner"=>$image_owner,"image_api"=>$image_api,"desc"=>$desc,"prices"=>$prices,"links"=>$links);
+
+return $array;
 
 }
+
 
 
 
