@@ -58,7 +58,7 @@ function explore($url){
     $array=array("name"=>$name,"owner"=>$owner,"image_owner"=>$image_owner,"image_api"=>$image_api,"desc"=>$desc,"prices"=>$prices,"links"=>$links);
 
 load_json_to_db($array);
-  // echo json_encode($array);
+ echo json_encode($array);
   //  print_r($array);
 
 
