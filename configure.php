@@ -158,4 +158,61 @@ $conn->close();
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+function check_table_exist($tag){
+  $servername = "mysql4.000webhost.com";
+  $username = "a2124875_root";
+  $password = "frocio12";
+  $dbname = "a2124875_cache";
+  $conn = new mysqli($servername, $username, $password, $dbname);
+  $result = $conn->query("SHOW TABLES LIKE '".$tag."'");
+if( $result->num_rows > 0){
+return "TRUE";
+}
+else {
+  return "FALSE";
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function create_table($tag,$array){
+
+  
+}
+
+
+
+
+
+
+
+
+
+
 ?>

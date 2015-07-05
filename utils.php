@@ -92,12 +92,16 @@ function find(){
     header('Content-Type: application/json');
     if((isset($_GET['type']))&&($_GET['type']!=null)&&((isset($_GET['parameter']))&&($_GET['parameter']!=null)) ) {
     //echo "find aperto";
-
+$response=check_table_exist("Tools");
+if($response=="FALSE"){
   $array=parse('https://www.mashape.com/explore'.switch_type($_GET['type']).$_GET['parameter']);
 
 echo json_encode($array);
 
+}else{
 
+  echo "ESISTE GIA";
+}
 
 
          }
