@@ -67,14 +67,15 @@ function explore($url){
 header('Content-Type: application/json');
 
  $date= date("Y/m/d");
- $diff=get_count_days($date);
+ $diff=get_count_days("cache",$date);
  if($diff>6){
  $array=parse('https://www.mashape.com/explore');
- load_json_to_db($array);
+ $table="cache";
+ load_json_to_db($cache,$array);
  echo json_encode($array);
  }
  else {
-   $array=read_from_cache();
+   $array=read_from_cache("cache");
    echo json_encode($array);
  }
   //  print_r($array);
@@ -92,17 +93,34 @@ function find(){
     header('Content-Type: application/json');
     if((isset($_GET['type']))&&($_GET['type']!=null)&&((isset($_GET['parameter']))&&($_GET['parameter']!=null)) ) {
     //echo "find aperto";
+    if($_GET['type']=="tags"){
 $response=check_table_exist("Tools");
 if($response=="FALSE"){
   $array=parse('https://www.mashape.com/explore'.switch_type($_GET['type']).$_GET['parameter']);
-
+create_table($_GET['parameter'],$array);
 echo json_encode($array);
 
 }else{
 
-  echo "ESISTE GIA";
-}
+  $date= date("Y/m/d");
 
+  $diff=get_count_days($_GET['parameter'],$date);
+  if($diff>6){
+  $array=parse('https://www.mashape.com/explore'.switch_type($_GET['type']).$_GET['parameter']);
+  $table="cache";
+  load_json_to_db($cache,$array);
+  echo json_encode($array);
+}
+else {
+  $array=read_from_cache($_GET['parameter']);
+  echo json_encode($array);
+}
+}
+}else{
+  $array=parse('https://www.mashape.com/explore'.switch_type($_GET['type']).$_GET['parameter']);
+  echo json_encode($array);
+
+}
 
          }
     else{

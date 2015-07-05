@@ -1,6 +1,6 @@
 <?php
 
-function load_json_to_db($json){
+function load_json_to_db($table,$json){
 $servername = "mysql4.000webhost.com";
 $username = "a2124875_root";
 $password = "frocio12";
@@ -23,7 +23,7 @@ $desc =urlencode($json['desc'][$i]);
 $prices =urlencode($json['prices'][$i]);
 $links =urlencode($json['links'][$i]);
 
-$sql = "INSERT INTO cache  VALUES (NULL,'".$name."','".$owner."','".$image_owner."','".$image_api."','".$desc."','".$prices."','".$links."','".$date."')";
+$sql = "INSERT INTO ".$table."  VALUES (NULL,'".$name."','".$owner."','".$image_owner."','".$image_api."','".$desc."','".$prices."','".$links."','".$date."')";
 if ($conn->query($sql) === TRUE) {
   //  echo "New record created successfully";
 } else {
@@ -35,9 +35,9 @@ $conn->close();
 
 }
 
-function get_count_days($data){
+function get_count_days($table,$data){
 
-$db_data=get_last_data();
+$db_data=get_last_data($table);
 $count_data=strtotime($data) ;
 $count_db_data=strtotime($db_data);
 $differences=$count_data-$count_db_data;
@@ -65,16 +65,16 @@ return $differences;
 
 
 
-function read_from_cache(){
+function read_from_cache($table){
 
-$db_data=get_last_data();
+$db_data=get_last_data($table);
 
 $servername = "mysql4.000webhost.com";
 $username = "a2124875_root";
 $password = "frocio12";
 $dbname = "a2124875_cache";
 $conn = new mysqli($servername, $username, $password, $dbname);
-  $sql =" SELECT * FROM cache  WHERE data like '".$db_data."'";
+  $sql =" SELECT * FROM ".$table."  WHERE data like '".$db_data."'";
 
 
     $name =array();
@@ -126,7 +126,7 @@ return $array;
 
 
 
-function get_last_data(){
+function get_last_data($table){
 
   $db_data=null;
     $servername = "mysql4.000webhost.com";
@@ -139,7 +139,7 @@ function get_last_data(){
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql =" SELECT DATA FROM cache ORDER BY id DESC LIMIT 1 ";
+    $sql =" SELECT DATA FROM ".$table." ORDER BY id DESC LIMIT 1 ";
 
     if ($result=$conn->query($sql) ) {
       while ($row = $result->fetch_row()) {
@@ -203,8 +203,25 @@ else {
 
 function create_table($tag,$array){
 
-  
+  $servername = "mysql4.000webhost.com";
+  $username = "a2124875_root";
+  $password = "frocio12";
+  $dbname = "a2124875_cache";
+  $conn = new mysqli($servername, $username, $password, $dbname);
+  $sql = "CREATE TABLE ".$tag." (id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,name LONGTEXT NOT NULL,owner LONGTEXT NOT NULL,image_owner LONGTEXT NOT NULL,image_api LONGTEXT NOT NULL,description LONGTEXT NOT NULL,prices LONGTEXT NOT NULL,links LONGTEXT NOT NULL,data LONGTEXT NOT NULL)";
+
+
+  if ($conn->query($sql) === TRUE) {
+      echo "Table MyGuests created successfully";
+  } else {
+      echo "Error creating table: " . $conn->error;
+  }
+
+  load_json_to_db($tag,$array);
+
+  $conn->close();
 }
+
 
 
 
