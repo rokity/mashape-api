@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 }
 $date= date("Y/m/d");
 $length=count($json['name']);
-echo $length;
+
 for($i=0;$i<$length;$i++){
 
 $name=urlencode($json['name'][$i]);
@@ -35,7 +35,49 @@ $conn->close();
 
 }
 
+function get_count_days($data){
+  /*
+  *
 
+SELECT data
+FROM table_name
+ORDER BY id DESC
+LIMIT 1
+
+
+  *
+  */
+$db_data=null;
+  $servername = "mysql4.000webhost.com";
+  $username = "a2124875_root";
+  $password = "frocio12";
+  $dbname = "a2124875_cache";
+  $conn = new mysqli($servername, $username, $password, $dbname);
+  // Check connection
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+  }
+
+  $sql =" SELECT DATA FROM cache ORDER BY id DESC LIMIT 1 ";
+
+  if ($result=$conn->query($sql) ) {
+    while ($row = $result->fetch_row()) {
+          $db_data= $row[0];
+      }
+
+    /* free result set */
+    $result->close();
+  } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+$count_data=strtotime($data) ;
+$count_db_data=strtotime($db_data);
+$differences=$count_data-$count_db_data;
+
+
+$conn->close();
+return $differences;
+}
 
 
 
