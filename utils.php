@@ -94,17 +94,17 @@ function find(){
     if((isset($_GET['type']))&&($_GET['type']!=null)&&((isset($_GET['parameter']))&&($_GET['parameter']!=null)) ) {
     //echo "find aperto";
     if($_GET['type']=="tags"){
-$response=check_table_exist($_GET['parameter']);
+$response=check_table_exist(strtolower($_GET['parameter']));
 if($response=="FALSE"){
   $array=parse('https://www.mashape.com/explore'.switch_type($_GET['type']).$_GET['parameter']);
-create_table($_GET['parameter'],$array);
+create_table(strtolower($_GET['parameter']),$array);
 echo json_encode($array);
 
 }else{
 
   $date= date("Y/m/d");
 
-  $diff=get_count_days($_GET['parameter'],$date);
+  $diff=get_count_days(strtolower($_GET['parameter']),$date);
   if($diff>6){
   $array=parse('https://www.mashape.com/explore'.switch_type($_GET['type']).$_GET['parameter']);
   $table=$_GET['parameter'];
@@ -112,7 +112,7 @@ echo json_encode($array);
   echo json_encode($array);
 }
 else {
-  $array=read_from_cache($_GET['parameter']);
+  $array=read_from_cache(strtolower($_GET['parameter']));
   echo json_encode($array);
 }
 }
