@@ -107,8 +107,8 @@ echo json_encode($array);
   $diff=get_count_days($_GET['parameter'],$date);
   if($diff>6){
   $array=parse('https://www.mashape.com/explore'.switch_type($_GET['type']).$_GET['parameter']);
-  $table="cache";
-  load_json_to_db($cache,$array);
+  $table=$_GET['parameter'];
+  load_json_to_db($table,$array);
   echo json_encode($array);
 }
 else {
