@@ -95,12 +95,18 @@ function find(){
     //echo "find aperto";
     if($_GET['type']=="tags"){
 find_for_tags();
-}else{
+}
+if($_GET['type']=="search"){
 find_for_name();
 }
 
+if($_GET['type']=="owner")
+{
+  find_for_owner();
+}
          }
     else{
+
 
          $data=array('Error'=>'Erorr in Query');
 
@@ -114,7 +120,12 @@ echo json_encode($data);
 
 
 
+function find_for_owner(){
+  echo 'https://www.mashape.com/'.$_GET['parameter'];
+  $array=parse('https://www.mashape.com/'.$_GET['parameter']);
+  echo json_encode($array);
 
+}
 
 
 
@@ -173,7 +184,6 @@ function find_for_tags(){
 
 
 function find_for_name(){
-
   $array=parse('https://www.mashape.com/explore'.switch_type($_GET['type']).$_GET['parameter']);
   echo json_encode($array);
 
