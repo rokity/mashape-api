@@ -212,7 +212,7 @@ function create_table($tag,$array){
 
 
   if ($conn->query($sql) === TRUE) {
-      echo "Table MyGuests created successfully";
+    //  echo "Table MyGuests created successfully";
   } else {
       echo "Error creating table: " . $conn->error;
   }

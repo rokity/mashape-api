@@ -71,7 +71,7 @@ header('Content-Type: application/json');
  if($diff>6){
  $array=parse('https://www.mashape.com/explore');
  $table="cache";
- load_json_to_db($cache,$array);
+ load_json_to_db($table,$array);
  echo json_encode($array);
  }
  else {
@@ -94,7 +94,7 @@ function find(){
     if((isset($_GET['type']))&&($_GET['type']!=null)&&((isset($_GET['parameter']))&&($_GET['parameter']!=null)) ) {
     //echo "find aperto";
     if($_GET['type']=="tags"){
-$response=check_table_exist("Tools");
+$response=check_table_exist($_GET['parameter']);
 if($response=="FALSE"){
   $array=parse('https://www.mashape.com/explore'.switch_type($_GET['type']).$_GET['parameter']);
 create_table($_GET['parameter'],$array);
