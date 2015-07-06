@@ -83,6 +83,10 @@ function sw($q)
      explore("https://www.mashape.com/explore");
         break;
 
+    case "list":
+    list_of_tags("https://www.mashape.com/explore");
+    break;
+
 }
 
 

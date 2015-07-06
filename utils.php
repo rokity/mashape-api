@@ -155,4 +155,60 @@ function switch_type($t){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function list_of_tags($url){
+
+  $tags = list_($url);
+  echo json_encode($tags);
+}
+
+
+
+
+
+function list_($url){
+  $html = file_get_html($url);
+
+  $tags=array();
+
+//aside
+foreach($html->find('aside') as $element) {
+    if( $element->class =="page-sidebar thin"){
+        //page-sidebar thin
+        foreach($element->find('ul') as $ul)  //ul
+        foreach($ul->find('li') as $li)       //li
+        foreach($li->find('a') as $a){
+        //  print_r($a);  //a
+          array_push($tags,$a->plaintext);
+
+        }
+
+    }
+
+}
+
+return $tags;
+}
+
+
+
+
 ?>
