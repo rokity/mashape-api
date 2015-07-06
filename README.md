@@ -12,7 +12,8 @@
 
 <li>Search API for Name ``` http://speech2text.site90.com/?query=find&type=search&parameter=$Name$ ```</li>
 
-</ul> 
+<li>Get list of Tags ```  http://www.speech2text.site90.com/?query=list ``` </li>
+</ul>
 
 
 
@@ -22,11 +23,11 @@ The web page returns an Array of Array in JSON and it is made in this way:
 
 <li> name => "name of api"</li>
 
-<li> owner => "owner of api" </li> 
+<li> owner => "owner of api" </li>
 
 <li> image_owner => "image of owner's profile" </li>
 
-<li> image_api => "image of API" </li> 
+<li> image_api => "image of API" </li>
 
 <li> desc => "description of API" </li>
 
@@ -36,5 +37,3 @@ The web page returns an Array of Array in JSON and it is made in this way:
 
 
 </ul>
-
-
