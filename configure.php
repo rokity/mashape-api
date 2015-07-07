@@ -38,9 +38,10 @@ $conn->close();
 function get_count_days($table,$data){
 
 $db_data=get_last_data($table);
-$count_data=strtotime($data) ;
-$count_db_data=strtotime($db_data);
-$differences=$count_data-$count_db_data;
+
+
+$differences=$data-$db_data;
+
 
 
 

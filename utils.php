@@ -68,6 +68,7 @@ header('Content-Type: application/json');
 
  $date= date("Y/m/d");
  $diff=get_count_days("cache",$date);
+ echo $diff;
  if($diff>6){
  $array=parse('https://www.mashape.com/explore');
  $table="cache";
@@ -152,6 +153,7 @@ function find_for_owner(){
 function find_for_tags(){
 
   $response=check_table_exist(strtolower($_GET['parameter']));
+  
   if($response=="FALSE"){
     $array=parse('https://www.mashape.com/explore'.switch_type($_GET['type']).$_GET['parameter']);
   create_table(strtolower($_GET['parameter']),$array);
@@ -162,6 +164,7 @@ function find_for_tags(){
     $date= date("Y/m/d");
 
     $diff=get_count_days(strtolower($_GET['parameter']),$date);
+  //  echo "diff".$diff;
     if($diff>6){
     $array=parse('https://www.mashape.com/explore'.switch_type($_GET['type']).$_GET['parameter']);
     $table=$_GET['parameter'];
