@@ -39,13 +39,20 @@ function get_count_days($table,$data){
 
 $db_data=get_last_data($table);
 
+$date1 = $db_data;
+$date2 = $data;
 
-$differences=$data-$db_data;
+$diff = abs(strtotime($date2) - strtotime($date1));
+$years = floor($diff / (365*60*60*24));
+$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+$days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
 
 
 
 
-return $differences;
+
+
+return $days;
 }
 
 

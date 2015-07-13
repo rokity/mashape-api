@@ -153,7 +153,7 @@ function find_for_owner(){
 function find_for_tags(){
 
   $response=check_table_exist(strtolower($_GET['parameter']));
-  
+
   if($response=="FALSE"){
     $array=parse('https://www.mashape.com/explore'.switch_type($_GET['type']).$_GET['parameter']);
   create_table(strtolower($_GET['parameter']),$array);
@@ -262,6 +262,28 @@ function list_of_tags($url){
   $tags = list_($url);
   echo json_encode($tags);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
