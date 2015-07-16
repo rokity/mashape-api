@@ -62,13 +62,13 @@ function parse($url){
 function explore($url){
 
 
-
+  
 
 header('Content-Type: application/json');
 
  $date= date("Y/m/d");
  $diff=get_count_days("cache",$date);
- echo $diff;
+
  if($diff>6){
  $array=parse('https://www.mashape.com/explore');
  $table="cache";
