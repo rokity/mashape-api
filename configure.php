@@ -1,5 +1,14 @@
 <?php
 
+
+
+
+
+
+
+
+
+
 function load_json_to_db($table,$json){
 $servername = "mysql4.000webhost.com";
 $username = "a2124875_root";
@@ -35,25 +44,7 @@ $conn->close();
 
 }
 
-function get_count_days($table,$data){
 
-$db_data=get_last_data($table);
-
-$date1 = $db_data;
-$date2 = $data;
-
-$diff = abs(strtotime($date2) - strtotime($date1));
-$years = floor($diff / (365*60*60*24));
-$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-$days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-
-
-
-
-
-
-return $days;
-}
 
 
 
