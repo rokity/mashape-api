@@ -32,7 +32,7 @@ $desc =urlencode($json['desc'][$i]);
 $prices =urlencode($json['prices'][$i]);
 $links =urlencode($json['links'][$i]);
 
-$sql = "INSERT INTO ".$table."  VALUES (NULL,'".$name."','".$owner."','".$image_owner."','".$image_api."','".$desc."','".$prices."','".$links."','".$date."')";
+$sql = "INSERT INTO ".strtolower($table)."  VALUES (NULL,'".$name."','".$owner."','".$image_owner."','".$image_api."','".$desc."','".$prices."','".$links."','".$date."')";
 if ($conn->query($sql) === TRUE) {
   //  echo "New record created successfully";
 } else {

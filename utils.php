@@ -25,7 +25,6 @@ function explore($url){
 
 
  $date= get_cur_data();
- echo $date;
 
 
  $diff=get_count_days("cache",$date);

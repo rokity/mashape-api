@@ -29,8 +29,8 @@ function get_count_days($table,$data){
 
 $db_data=get_last_data($table);
 
-$date1 = $db_data;
-$date2 = $data;
+$data1 = $db_data;
+$data2 = $data;
 
 $days=get_diff_between_two_date($data1,$data2);
 
@@ -73,6 +73,27 @@ function get_diff_between_two_date($date1,$date2)
 
   return $days;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ?>
