@@ -37,65 +37,59 @@ if((isset($_GET['query']))&&($_GET['query']!=null)) {
     $query=$_GET['query'];
 
 
-    //pass the parameter to "switch function" (sw) in index.php
-   sw($query);
 
+    switch ($query) {
+       case "find":
+           find(); // "find" function is in utils.php
+           break;
 
+       case "explore":
+        explore("https://www.mashape.com/explore");  // "explore" function is in utils.php
+           break;
 
+       case "list":
+       list_of_tags("https://www.mashape.com/explore");   // "list_of_tags" function is in utils.php
+       break;
+       
+       default :
+       error("Query null");
 
-}
-else{
-
-    header('Content-Type: application/json');
-
-    $data=array('Error'=>'Query Null');
-
-echo json_encode($data);
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//"switch function" It's a function that switch parameter "query" between "find" , "explore" and "list" string
-
-function sw($q)
-{
-
-
- switch ($q) {
-    case "find":
-        find(); // "find" function is in utils.php
-        break;
-
-    case "explore":
-     explore("https://www.mashape.com/explore");  // "explore" function is in utils.php
-        break;
-
-    case "list":
-    list_of_tags("https://www.mashape.com/explore");   // "list_of_tags" function is in utils.php
-    break;
-
-}
+     }
 
 
 
 }
+else
+error("Query null");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function error($message){
+  $data=array('Error'=>$message);
+  echo json_encode($data);
+}
+
+
+
+
+
+
+
 
 
 

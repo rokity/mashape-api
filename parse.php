@@ -64,4 +64,78 @@ function parse($url){
   return $array;
 }
 
+
+
+
+
+
+
+function parse_owner_page($url){
+
+
+
+  /*$html=str_get_html(file_get_contents($url));
+echo $html;
+
+
+
+
+  $name=array();
+  $owner=array();
+  $image_owner=array();
+  $image_api=array();
+  $desc=array();
+  $prices=array();
+  $links=array();
+
+echo $url;
+  $h4=$html->find(".name");
+  var_dump($h4);
+
+
+
+
+
+
+
+  foreach ($html->find('.owner') as $key => $value)
+      array_push($owner,$value->plaintext);
+
+
+      var_dump($name);
+      var_dump($owner);
+
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>

@@ -24,23 +24,16 @@ function explore($url){
 
 
 
- $date= get_cur_data();
 
 
- $diff=get_count_days("cache",$date);
+ if(get_count_days("cache",get_cur_data())>6){
 
- if($diff>6){
  $array=parse('https://www.mashape.com/explore');
- $table="cache";
- load_json_to_db($table,$array);
+ load_json_to_db("cache",$array);
  echo json_encode($array);
  }
- else {
-   $array=read_from_cache("cache");
-   echo json_encode($array);
- }
-  //  print_r($array);
-
+ else
+   echo json_encode(read_from_cache("cache"));
 
 
 
@@ -51,28 +44,29 @@ function explore($url){
 
 function find(){
 
-    header('Content-Type: application/json');
+
     if((isset($_GET['type']))&&($_GET['type']!=null)&&((isset($_GET['parameter']))&&($_GET['parameter']!=null)) ) {
-    //echo "find aperto";
-    if($_GET['type']=="tags"){
-find_for_tags();
-}
-if($_GET['type']=="search"){
-find_for_name();
-}
 
-if($_GET['type']=="owner")
-{
+switch ($_GET['type']) {
+  case 'tags':
+  find_for_tags();
+    break;
+  case 'search':
+  find_for_name();
+  break;
+  case 'owner':
   find_for_owner();
+  break;
+  default:
+     error("Query null");
+    break;
 }
-         }
-    else{
+
+}
+else
+  error("Query null");
 
 
-         $data=array('Error'=>'Erorr in Query');
-
-echo json_encode($data);
-    }
 
 }
 
@@ -82,8 +76,8 @@ echo json_encode($data);
 
 
 function find_for_owner(){
-  echo 'https://www.mashape.com/'.$_GET['parameter'];
-  $array=parse('https://www.mashape.com/'.$_GET['parameter']);
+//  echo 'https://www.mashape.com/'.$_GET['parameter'];
+  $array=parse_owner_page('https://www.mashape.com/'.$_GET['parameter']);
   echo json_encode($array);
 
 }
